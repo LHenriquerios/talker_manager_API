@@ -1,11 +1,14 @@
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const router = express.Router();
 
-const data = fs.readFileSync('talker.json', 'utf8');
-console.log(data);
-
-router.get('/talker', (_req, res) => res.status(200).send(data));
+fs.readFile('talker.json', 'utf8')
+.then((data) => {
+    router.get('/talker', (_req, res) => res.status(200).json(JSON.parse(data)));
+})
+.catch((err) => {
+ console.log(err);
+});
 
 module.exports = router;
