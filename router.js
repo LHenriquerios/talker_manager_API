@@ -1,16 +1,9 @@
 const express = require('express');
-const fs = require('fs').promises;
+const { getTalker, getTalkerById } = require('./getTalkers');
 
 const router = express.Router();
 
-router.get('/talker', (_req, res) => {
-fs.readFile('talker.json', 'utf8')
-.then((data) => {
-    res.status(200).json(JSON.parse(data));
-})
-.catch((err) => {
- console.log(err);
-});
-});
+router.get('/talker', getTalker);
+router.get('/talker/:id', getTalkerById);
 
 module.exports = router;
