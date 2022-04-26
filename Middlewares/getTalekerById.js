@@ -1,19 +1,10 @@
 const fs = require('fs').promises;
-const { SUCESS, NOT_FOUND } = require('./statusCode');
-
-const getTalker = async (_req, res) => {
-    try {
-        const data = await fs.readFile('talker.json', 'utf8');
-        return res.status(SUCESS).json(JSON.parse(data));
-    } catch (err) {
-        console.log(err);
-    }
-};
+const { SUCESS, NOT_FOUND } = require('../statusCode');
 
 const getTalkerById = async (req, res) => {
     try {
         const { id } = req.params;
-        const data = await fs.readFile('talker.json', 'utf8');
+        const data = await fs.readFile('./talker.json', 'utf8');
         const talker = JSON.parse(data).find((element) => element.id === Number(id));
         if (!talker) {
             return res.status(NOT_FOUND).json({
@@ -26,7 +17,4 @@ const getTalkerById = async (req, res) => {
     }
 };
 
-module.exports = {
-    getTalker,
-    getTalkerById,
-};
+module.exports = getTalkerById;
