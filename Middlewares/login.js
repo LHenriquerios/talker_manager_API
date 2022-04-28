@@ -1,7 +1,7 @@
 const { SUCESS, BAD_REQUEST } = require('../statusCode');
 
 // função retirada do blog 'https://www.webtutorial.com.br/funcao-para-gerar-uma-string-aleatoria-random-com-caracteres-especificos-em-javascript/'
-function geraStringAleatoria() {
+function geraToken() {
     let stringAleatoria = '';
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (let i = 0; i < 16; i += 1) {
@@ -27,7 +27,7 @@ const login = (req, res) => {
     if (password.length < 7) {
         return res.status(BAD_REQUEST).json({ message: INVALID_PASSWORD });
     }
-    return res.status(SUCESS).json({ token: geraStringAleatoria() });
+    return res.status(SUCESS).json({ authorization: geraToken() });
 };
 
 module.exports = login;
