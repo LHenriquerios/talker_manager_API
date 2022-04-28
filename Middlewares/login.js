@@ -27,7 +27,7 @@ const login = (req, res) => {
     if (password.length < 7) {
         return res.status(BAD_REQUEST).json({ message: INVALID_PASSWORD });
     }
-    return res.status(SUCESS).json({ authorization: geraToken() });
+    return res.status(SUCESS).json({ token: geraToken() });
 };
 
 module.exports = login;

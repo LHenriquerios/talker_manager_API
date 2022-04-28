@@ -14,11 +14,11 @@ router.get('/talker', getTalker);
 router.get('/talker/:id', getTalkerById);
 router.post('/login', login);
 router.post('/talker',
-    validateAutorization,
-    validationName,
-    validationAge,
-    validationTalk,
-    validationTalkChildrens,
-    createTalker);
+validationName,
+validationAge,
+validationTalk,
+validationTalkChildrens,
+validateAutorization,
+createTalker);
 
 module.exports = router;
