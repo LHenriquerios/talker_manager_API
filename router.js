@@ -15,10 +15,10 @@ router.get('/talker/:id', getTalkerById);
 router.post('/login', login);
 router.post('/talker',
 validationName,
-validationAge,
 validationTalk,
 validationTalkChildrens,
 validateAutorization,
+validationAge,
 createTalker);
 
 module.exports = router;
