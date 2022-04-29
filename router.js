@@ -7,6 +7,7 @@ const validateAutorization = require('./Middlewares/validateAuthorization');
 const {
     validationName, validationAge, validationTalk, validationTalkChildrens,
 } = require('./Middlewares/validationInputs');
+const editTalker = require('./Middlewares/editTalker');
 
 const router = express.Router();
 
@@ -20,5 +21,12 @@ validationTalkChildrens,
 validateAutorization,
 validationAge,
 createTalker);
+router.put('/talker/:id',
+validationName,
+validationTalk,
+validationTalkChildrens,
+validateAutorization,
+validationAge,
+editTalker);
 
 module.exports = router;
