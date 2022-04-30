@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { CREATED } = require('../statusCode');
 
-const createTalker = async (req, res) => {
+const createTalker = async (req, res, next) => {
     const log = req.body;
     
     try {
@@ -11,6 +11,7 @@ const createTalker = async (req, res) => {
     return res.status(CREATED).json({ id: data.length + 1, ...log });
     } catch (err) {
         console.error(err);
+        next(err);
     }
 };
 

@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { SUCESS } = require('../statusCode');
 
-const getTalkerSearch = async (req, res) => {
+const getTalkerSearch = async (req, res, next) => {
     const { q } = req.query;
 
     try {
@@ -10,6 +10,7 @@ const getTalkerSearch = async (req, res) => {
     res.status(SUCESS).json(dataFilter);
     } catch (err) {
         console.error(err);
+        next(err);
     }
 };
 

@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { NO_CONTENT } = require('../statusCode');
 
-const deleteTalker = async (req, res) => {
+const deleteTalker = async (req, res, next) => {
     const { id } = req.params;
     
     try {
@@ -11,6 +11,7 @@ const deleteTalker = async (req, res) => {
     res.status(NO_CONTENT).json();
     } catch (err) {
         console.error(err);
+        next(err);
     }
 };
 

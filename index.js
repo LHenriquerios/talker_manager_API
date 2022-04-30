@@ -14,6 +14,9 @@ app.get('/', (_request, response) => {
 });
 
 app.use(router);
+app.use((err, _req, res, _next) => {
+  res.status(500).send(`Algo deu errado! Mensagem: ${err.message}`);
+});
 
 app.listen(PORT, () => {
   console.log('Online');

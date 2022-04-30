@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { SUCESS } = require('../statusCode');
 
-const editTalker = async (req, res) => {
+const editTalker = async (req, res, next) => {
     const id = Number(req.params.id);
 
     try {
@@ -14,6 +14,7 @@ const editTalker = async (req, res) => {
     res.status(SUCESS).json({ id, ...req.body });
     } catch (err) {
         console.error(err);
+        next(err);
     }
 };
 

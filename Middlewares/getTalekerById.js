@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { SUCESS, NOT_FOUND } = require('../statusCode');
 
-const getTalkerById = async (req, res) => {
+const getTalkerById = async (req, res, next) => {
     try {
         const { id } = req.params;
         const data = await fs.readFile('./talker.json', 'utf8');
@@ -14,6 +14,7 @@ const getTalkerById = async (req, res) => {
         res.status(SUCESS).json(talker);
     } catch (err) {
         console.log(err);
+        next(err);
     }
 };
 
